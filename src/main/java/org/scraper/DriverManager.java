@@ -7,14 +7,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.io.File;
 
 public class DriverManager {
-    private static WebDriver driver = null;
+    private static WebDriver webDriver = null;
 
     private static char ls = File.separatorChar;
     private static String resourcePath = ""+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"chromedriver.exe";
 
-    public static WebDriver getDriver(){
-        if (driver != null){
-            return driver;
+    public static WebDriver getWebDriver(){
+        if (webDriver != null){
+            return webDriver;
         }
         String path = System.getProperty("user.dir");
         System.out.println(path);
@@ -22,16 +22,15 @@ public class DriverManager {
 
 
 
-        driver = new ChromeDriver();
-        return driver;
+        webDriver = new ChromeDriver();
+        return webDriver;
 
     }
 
     private static ChromeOptions getChromeOptions(){
         ChromeOptions co = new ChromeOptions();
-//        \
-
-        
+//        co.setPlatformName("Windows 11");
+//        co.setBrowserVersion("120");
         return co;
     }
 
