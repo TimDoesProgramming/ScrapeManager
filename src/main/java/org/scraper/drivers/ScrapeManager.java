@@ -1,8 +1,8 @@
-package org.scraper;
+package org.scraper.drivers;
 
+import org.mongodb.MongoManager;
 import org.openqa.selenium.WebDriver;
-
-import java.util.HashMap;
+import org.scraper.drivers.DriverManager;
 
 
 public class ScrapeManager extends DriverManager {
@@ -11,7 +11,7 @@ public class ScrapeManager extends DriverManager {
 
     WebDriver driver;
     String baseUrl;
-    
+    MongoManager mongoManager;
 
     ScrapeManager(){
         this.driver = getDriver();

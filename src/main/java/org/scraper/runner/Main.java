@@ -1,4 +1,4 @@
-package org.scraper;
+package org.scraper.runner;
 
 import org.mongodb.MongoManager;
 import org.openqa.selenium.WebDriver;
