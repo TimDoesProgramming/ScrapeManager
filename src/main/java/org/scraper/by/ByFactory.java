@@ -11,6 +11,7 @@ public class ByFactory {
     public static By getByCommonTags(CommonTags ct){
 
         switch (ct){
+            case HREF -> {return new By.ByCssSelector("[href]");}
             case A -> {return new By.ByTagName("a");}
             case P ->{return new By.ByTagName("p");}
             case H1 -> {return new By.ByTagName("h1");}
@@ -19,8 +20,6 @@ public class ByFactory {
             case TITLE -> {return new By.ByTagName("title");}
             default -> {return null;}
         }
-
-
     }
     public static List<By> getByCommonTags (CommonTags... cts){
        List<By> commonTagsList = new ArrayList<By>();
