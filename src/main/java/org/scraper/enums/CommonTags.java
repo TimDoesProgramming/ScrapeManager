@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 public enum CommonTags {
 
+    HREF,
     A,
     H1,
     H2,
