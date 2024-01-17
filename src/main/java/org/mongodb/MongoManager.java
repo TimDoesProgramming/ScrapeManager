@@ -5,6 +5,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import java.util.List;
+
 public class MongoManager {
 
 
@@ -18,6 +21,10 @@ public class MongoManager {
     public MongoManager(){
         getMongoManager();
     }
+    /**
+     * Gets the MongoManager
+     * @return
+     */
     public MongoManager getMongoManager(){
         if(mongoManager == null){
             mongoManager = new MongoManager();
@@ -27,6 +34,12 @@ public class MongoManager {
     public static void setup(){
 
     }
+    /**
+     * Gets a document by field and value
+     * @param field
+     * @param value
+     * @return
+     */
     public Document getDocumentByFieldAndValue(String field, String value){
         try (MongoClient mongoClient = MongoClients.create(connectionURI)) {
             MongoDatabase database = mongoClient.getDatabase(dbName);
@@ -40,6 +53,41 @@ public class MongoManager {
             return doc;
         }
     }
+    /**
+     * Inserts a document into the collection
+     * @param doc
+     * @return
+     */
+    public boolean insertDocument(Document doc) {
+        boolean inserted = false;
+        try (MongoClient mongoClient = MongoClients.create(connectionURI)) {
+            MongoDatabase database = mongoClient.getDatabase(dbName);
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+            collection.insertOne(doc);
+            inserted = true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return inserted;
+    }
+    /**
+     * Inserts a list of documents into the collection
+     * @param docs
+     * @return
+     */
+    public boolean insertDocuments(List<Document> docs) {
+        boolean inserted = false;
+        try (MongoClient mongoClient = MongoClients.create(connectionURI)) {
+            MongoDatabase database = mongoClient.getDatabase(dbName);
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+            collection.insertMany(docs);
+            inserted = true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return inserted;
+    }
+
     public MongoManager(String connectionURI){
         this.connectionURI = connectionURI;
     }
