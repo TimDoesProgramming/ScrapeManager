@@ -43,12 +43,13 @@ public class ScrapeManager extends DriverManager {
     }
 
     /**
-     * Scrapes a page and adds the scraped links to the linkAndScraped HashMap
+     * Scrapes a page and adds the scraped links to the linkAndScraped HashMap for the given url
      * @param we
      * @return
      */
     public String getLink(WebElement we){
         return we.getAttribute("href");
+
     }
 
     /**
