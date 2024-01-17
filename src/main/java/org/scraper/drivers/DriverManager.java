@@ -16,6 +16,9 @@ public class DriverManager {
     private static char ls = File.separatorChar;
     private static String resourcePath = ""+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"chromedriver.exe";
 
+    /**
+     * Constructor for DriverManager
+     */
     public static WebDriver getWebDriver(){
         WebElement we;
 
@@ -31,7 +34,9 @@ public class DriverManager {
 
     }
 
-
+    /**
+     * Constructor for DriverManager
+     */
     private static ChromeOptions getChromeOptions(){
         ChromeOptions co = new ChromeOptions();
 //        co.setPlatformName("Windows 11");

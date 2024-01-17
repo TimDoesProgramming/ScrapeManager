@@ -3,8 +3,12 @@ package org.scraper.drivers;
 import org.mongodb.MongoManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.scraper.by.ByFactory;
 import org.scraper.drivers.DriverManager;
+import org.scraper.enums.CommonTags;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,27 +17,52 @@ public class ScrapeManager extends DriverManager {
 
 
 
-    WebDriver driver;
-    String baseUrl;
-    MongoManager mongoManager;
+    protected WebDriver driver;
+    protected String baseUrl;
+    protected MongoManager mongoManager;
 
-    ScrapeManager(){
+
+    /**
+     * Constructor for ScrapeManager
+     */
+    public ScrapeManager(){
+        super();
         this.driver = getDriver();
+        this.mongoManager = new MongoManager();
     }
-    ScrapeManager(String baseUrl){
+
+    /**
+     * Constructor for ScrapeManager
+     * @param baseUrl
+     */
+    public ScrapeManager(String baseUrl){
+        super();
         this.driver = getDriver();
         this.baseUrl = baseUrl;
+        this.mongoManager = new MongoManager();
     }
+
+    /**
+     * Scrapes a page and adds the scraped links to the linkAndScraped HashMap for the given url
+     * @param we
+     * @return
+     */
     public String getLink(WebElement we){
         return we.getAttribute("href");
+
     }
-    public String[] getLinks(List<WebElement> wes){
-        String[] links = {};
+
+    /**
+     * Scrapes a page and adds the scraped links to the linkAndScraped HashMap
+     * @param wes
+     * @return
+     */
+    public List<String> getLinks(List<WebElement> wes){
+        List<String> links = new ArrayList<String>();
         int size = wes.size();
 
         if(size>0){
-            links = new String[size];
-            return wes.stream().map((we)-> we.getAttribute("href")).collect(Collectors.toList()).toArray(links);
+            return wes.stream().map((we)-> we.getAttribute("href")).collect(Collectors.toList());
         }
         return links;
     }
