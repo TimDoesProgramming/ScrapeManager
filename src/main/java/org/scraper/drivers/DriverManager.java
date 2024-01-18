@@ -43,6 +43,9 @@ public class DriverManager {
 //        co.setBrowserVersion("120");
         return co;
     }
-
+    public void quit(){
+        if(webDriver != null)
+            webDriver.quit();
+    }
 
 }

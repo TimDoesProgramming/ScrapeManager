@@ -16,16 +16,25 @@ public class MongoManager {
     String dbName;
     String collectionName;
 
-
-
-    public MongoManager(){
-        getMongoManager();
+    public MongoManager(String connectionURI){
+        this.connectionURI = connectionURI;
     }
+    public MongoManager(String connectionURI, String dbName, String collectionName){
+        this.collectionName = collectionName;
+        this.dbName = dbName;
+        this.connectionURI = connectionURI;
+    }
+    private MongoManager(){
+        this.connectionURI = "mongodb://localhost:27017";
+        this.dbName = "local";
+        this.collectionName = "Links";
+    }
+
     /**
      * Gets the MongoManager
      * @return
      */
-    public MongoManager getMongoManager(){
+    public static MongoManager getMongoManager(){
         if(mongoManager == null){
             mongoManager = new MongoManager();
         }
@@ -88,14 +97,7 @@ public class MongoManager {
         return inserted;
     }
 
-    public MongoManager(String connectionURI){
-        this.connectionURI = connectionURI;
-    }
-    public MongoManager(String connectionURI, String dbName, String collectionName){
-        this.collectionName = collectionName;
-        this.dbName = dbName;
-        this.connectionURI = connectionURI;
-    }
+
 
     public String getConnectionURI() {
         return connectionURI;

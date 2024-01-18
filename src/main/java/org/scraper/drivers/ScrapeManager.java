@@ -28,7 +28,7 @@ public class ScrapeManager extends DriverManager {
     public ScrapeManager(){
         super();
         this.driver = getDriver();
-        this.mongoManager = new MongoManager();
+        this.mongoManager = MongoManager.getMongoManager();
     }
 
     /**
@@ -39,7 +39,7 @@ public class ScrapeManager extends DriverManager {
         super();
         this.driver = getDriver();
         this.baseUrl = baseUrl;
-        this.mongoManager = new MongoManager();
+        this.mongoManager = MongoManager.getMongoManager();
     }
 
     /**
@@ -66,6 +66,11 @@ public class ScrapeManager extends DriverManager {
         }
         return links;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getBaseUrl() {
         return baseUrl;
     }
