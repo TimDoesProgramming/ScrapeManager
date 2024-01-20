@@ -23,6 +23,11 @@ public class Page extends ScrapeManager {
 
     private HashMap<String, List<String>> linkAndScraped;
 
+
+    public Page(){
+        super();
+        linkAndScraped = new HashMap<String, List<String>>();
+    }
     /**
      * Constructor for Page
      * @param url
